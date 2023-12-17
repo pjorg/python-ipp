@@ -23,7 +23,7 @@ async def main() -> None:
                     "job-name": "My Test Job",
                     "document-format": "application/pdf",
                 },
-                'data': content,
+                "data": content,
             },
         )
 
