@@ -62,6 +62,17 @@ def construct_attribute(name: str, value: Any, tag: IppTag | None = None) -> byt
 
 
 def encode_collection(name: str, collection: dict[str, Any]) -> bytes:
+    """Encode a dict representing an IPP collection as a byte string.
+
+    Args:
+    ----
+        name (str): The name of the collection
+        collection (dict[str, Any]): The collection contents
+
+    Returns:
+    -------
+        bytes: A binary string representing the collection
+    """
     byte_str = b""
 
     byte_str += struct.pack(">b", IppTag.BEGIN_COLLECTION.value)
