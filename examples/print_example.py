@@ -2,17 +2,18 @@
 """Asynchronous Python client for IPP."""
 import asyncio
 
+import aiofiles
+
 from pyipp import IPP
 from pyipp.enums import IppOperation
 
 
 async def main() -> None:
-
-    pdf_file = '/path/to/pdf.pfd'
-    with open(pdf_file, 'rb') as f:
-        content = f.read()
-
     """Show example of executing operation against your IPP print server."""
+    pdf_file = "/path/to/pdf.pdf"
+    async with aiofiles.open(pdf_file, mode="rb") as file:
+        content = await file.read()
+
     async with IPP("ipp://192.168.1.92:631/ipp/print") as ipp:
         response = await ipp.execute(
             IppOperation.PRINT_JOB,
