@@ -26,7 +26,7 @@ jobs:
         run: pipx install poetry
       - name: Set up Python ${{ matrix.python }}
         id: python
-        uses: actions/setup-python@v5.3.0
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ matrix.python }}
           cache: "poetry"
@@ -39,7 +39,7 @@ jobs:
       - name: Run pytest
         run: poetry run pytest --cov pyipp tests
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: coverage-${{ matrix.python }}
           path: .coverage
@@ -54,12 +54,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Download coverage data
-        uses: actions/download-artifact@v4.2.1
+        uses: actions/download-artifact@v4.3.0
       - name: Set up Poetry
         run: pipx install poetry
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
         id: python
-        uses: actions/setup-python@v5.3.0
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: ${{ env.DEFAULT_PYTHON }}
           cache: "poetry"
@@ -74,6 +74,6 @@ jobs:
           poetry run coverage combine coverage*/.coverage*
           poetry run coverage xml -i
       - name: Upload coverage report
-        uses: codecov/codecov-action@v4.6.0
+        uses: codecov/codecov-action@v5.4.3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
